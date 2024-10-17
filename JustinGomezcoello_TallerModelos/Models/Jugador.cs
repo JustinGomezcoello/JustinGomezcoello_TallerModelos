@@ -16,7 +16,7 @@ namespace JustinGomezcoello_TallerModelos.Models
         public string Edad { get; set; }
         public Equipo Equipo { get; set; } 
         [ForeignKey("Equipo")]
-        public string IdEquipo { get; set; }
+        public int IdEquipo { get; set; }
 
     }
 }

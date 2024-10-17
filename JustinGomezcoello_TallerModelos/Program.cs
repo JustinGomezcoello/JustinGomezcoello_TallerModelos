@@ -1,4 +1,9 @@
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
+using JustinGomezcoello_TallerModelos.Data;
 var builder = WebApplication.CreateBuilder(args);
+builder.Services.AddDbContext<JustinGomezcoello_TallerModelosContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("JustinGomezcoello_TallerModelosContext") ?? throw new InvalidOperationException("Connection string 'JustinGomezcoello_TallerModelosContext' not found.")));
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
