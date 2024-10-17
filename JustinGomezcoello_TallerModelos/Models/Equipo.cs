@@ -16,6 +16,10 @@ namespace JustinGomezcoello_TallerModelos.Models
         public string Titulos { get; set; }
         [MaxLength(2)]
         public string AceptaExtranjeros { get; set; }
-        
+
+        public Estadio Estadio { get; set; }
+        [ForeignKey("Estadio")]
+        public int IdEstadio { get; set; }
+
     }
 }

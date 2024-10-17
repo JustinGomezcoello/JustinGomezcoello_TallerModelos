@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace JustinGomezcoello_TallerModelos.Models
 {
@@ -13,7 +14,9 @@ namespace JustinGomezcoello_TallerModelos.Models
         public string Posicion { get; set; }
         [Range(0,60)]
         public string Edad { get; set; }
-        public string Equipo { get; set; }
+        public Equipo Equipo { get; set; } 
+        [ForeignKey("Equipo")]
+        public string IdEquipo { get; set; }
 
     }
 }
