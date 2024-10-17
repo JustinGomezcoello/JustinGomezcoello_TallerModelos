@@ -10,11 +10,11 @@ using JustinGomezcoello_TallerModelos.Models;
 
 namespace JustinGomezcoello_TallerModelos.Controllers
 {
-    public class EquipoesController : Controller
+    public class EquiposController : Controller
     {
         private readonly JustinGomezcoello_TallerModelosContext _context;
 
-        public EquipoesController(JustinGomezcoello_TallerModelosContext context)
+        public EquiposController(JustinGomezcoello_TallerModelosContext context)
         {
             _context = context;
         }
