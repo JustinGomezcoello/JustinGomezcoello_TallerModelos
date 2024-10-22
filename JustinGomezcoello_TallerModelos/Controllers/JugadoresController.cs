@@ -160,5 +160,11 @@ namespace JustinGomezcoello_TallerModelos.Controllers
         {
             return _context.Jugador.Any(e => e.Id == id);
         }
+
+
+
+
+
+
     }
 }

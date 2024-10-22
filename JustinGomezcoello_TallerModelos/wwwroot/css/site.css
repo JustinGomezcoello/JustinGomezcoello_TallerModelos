@@ -21,6 +21,9 @@ body {
     margin-bottom: 60px;
   
 }
-
+.page-container {
+    background-color: lightgray;
+    padding: 20px;
+}
 
 
