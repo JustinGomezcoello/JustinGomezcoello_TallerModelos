@@ -21,8 +21,16 @@ body {
     margin-bottom: 60px;
   
 }
-.page-container {
+.page1 {
     background-color: lightgray;
+    padding: 20px;
+}
+.page2 {
+    background-color: lightcyan;
+    padding: 20px;
+}
+.page3{
+    background-color: palegoldenrod;
     padding: 20px;
 }
 
