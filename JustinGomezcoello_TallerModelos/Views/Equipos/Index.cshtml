@@ -3,14 +3,14 @@
 @{
     ViewData["Title"] = "Index";
 }
-<div class="page2">
+
+<body class="page2">
 <h1 style="color:deeppink" >Equipos</h1>
 
 
 <p>
     <a asp-action="Create" class="btn btn-danger">Create New</a>
 </p>
-<div class="page-container">
 <table class="table">
     <thead>
         <tr>
@@ -48,7 +48,7 @@
                 @Html.DisplayFor(modelItem => item.AceptaExtranjeros)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Estadio.Nombre)
+                @Html.DisplayFor(modelItem => item.Estadio.Ciudad)
             </td>
             <td>
                     <a class="btn btn-info" asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
@@ -59,3 +59,4 @@
 }
     </tbody>
 </table>
+</body>
