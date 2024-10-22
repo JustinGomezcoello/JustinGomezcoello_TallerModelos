@@ -8,7 +8,22 @@
 
 <p>
     <a asp-action="Create" class="btn btn-danger">Create New</a>
+
+      
 </p>
+
+<!-- Formulario para filtrar jugadores por equipo -->
+<form method="get" asp-action="Index">
+    <label for="idEquipo">Filtrar por equipo:</label>
+    <select id="idEquipo" name="idEquipo">
+        <option value="">Todos los equipos</option>
+        @foreach (var equipo in ViewBag.Equipos as List<JustinGomezcoello_TallerModelos.Models.Equipo>)
+        {
+            <option value="@equipo.Id">@equipo.Nombre</option>
+        }
+    </select>
+    <input type="submit" value="Filtrar" />
+</form>
 
 
 
@@ -46,7 +61,7 @@
                 @Html.DisplayFor(modelItem => item.Edad)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Equipo.Ciudad)
+                @Html.DisplayFor(modelItem => item.Equipo.Nombre)
             </td>
             <td>
                     <a class="btn btn-info" asp-action="Edit" asp-route-id="@item.Id">Edit</a> |

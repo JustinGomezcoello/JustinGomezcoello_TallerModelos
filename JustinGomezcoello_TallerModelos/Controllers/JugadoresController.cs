@@ -19,12 +19,27 @@ namespace JustinGomezcoello_TallerModelos.Controllers
             _context = context;
         }
 
-        // GET: Jugadors
-        public async Task<IActionResult> Index()
+        // GET: Jugadores
+        public async Task<IActionResult> Index(int? idEquipo)
         {
-            var justinGomezcoello_TallerModelosContext = _context.Jugador.Include(j => j.Equipo);
-            return View(await justinGomezcoello_TallerModelosContext.ToListAsync());
+            // Cargar todos los equipos y almacenarlos en ViewBag para el dropdown
+            ViewBag.Equipos = await _context.Equipo.ToListAsync();
+
+            // Obtener la lista de jugadores incluyendo el equipo relacionado
+            var jugadoresQuery = _context.Jugador.Include(j => j.Equipo);
+
+            // Filtrar jugadores por el Id del equipo si se proporciona
+            if (idEquipo.HasValue && idEquipo.Value > 0)  // Si se selecciona un equipo
+            {
+                var jugadoresQ = jugadoresQuery.Where(j => j.IdEquipo == idEquipo.Value);
+            }
+
+            // Ejecutar la consulta y devolver la lista de jugadores
+            var jugadores = await jugadoresQuery.ToListAsync();
+
+            return View(jugadores);
         }
+
 
         // GET: Jugadors/Details/5
         public async Task<IActionResult> Details(int? id)
@@ -51,6 +66,8 @@ namespace JustinGomezcoello_TallerModelos.Controllers
             ViewData["IdEquipo"] = new SelectList(_context.Set<Equipo>(), "Id", "Nombre");
             return View();
         }
+       
+
 
         // POST: Jugadors/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
@@ -162,8 +179,6 @@ namespace JustinGomezcoello_TallerModelos.Controllers
         }
 
 
-
-        
 
     }
 }
