@@ -13,18 +13,19 @@
 </p>
 
 <!-- Formulario para filtrar jugadores por equipo -->
-<form method="get" asp-action="Index">
-    <label for="idEquipo">Filtrar por equipo:</label>
-    <select id="idEquipo" name="idEquipo">
-        <option value="">Todos los equipos</option>
-        @foreach (var equipo in ViewBag.Equipos as List<JustinGomezcoello_TallerModelos.Models.Equipo>)
-        {
-            <option value="@equipo.Id">@equipo.Nombre</option>
-        }
-    </select>
-    <input type="submit" value="Filtrar" />
-</form>
-
+    <form method="get">
+        <div class="form-group">
+            <label for="equipoId">Filtrar por equipo</label>
+            <select name="equipoId" class="form-control">
+                <option value="">Todos los equipos</option>
+                @foreach (var equipo in ViewBag.Equipos)
+                {
+                    <option value="@equipo.Value">@equipo.Text</option>
+                }
+            </select>
+            <button type="submit" class="btn btn-primary">Filtrar</button>
+        </div>
+    </form>
 
 
 

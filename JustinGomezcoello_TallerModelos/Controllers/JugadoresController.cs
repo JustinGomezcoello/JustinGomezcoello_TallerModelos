@@ -20,24 +20,22 @@ namespace JustinGomezcoello_TallerModelos.Controllers
         }
 
         // GET: Jugadores
-        public async Task<IActionResult> Index(int? idEquipo)
+        
+        public async Task<IActionResult> Index(int? equipoId)
         {
-            // Cargar todos los equipos y almacenarlos en ViewBag para el dropdown
-            ViewBag.Equipos = await _context.Equipo.ToListAsync();
+            // Cargar jugadores y equipos
+            var jugadores = _context.Jugador.Include(j => j.Equipo).AsQueryable();
 
-            // Obtener la lista de jugadores incluyendo el equipo relacionado
-            var jugadoresQuery = _context.Jugador.Include(j => j.Equipo);
-
-            // Filtrar jugadores por el Id del equipo si se proporciona
-            if (idEquipo.HasValue && idEquipo.Value > 0)  // Si se selecciona un equipo
+            // Filtrar por equipo si se proporciona un Id
+            if (equipoId.HasValue && equipoId > 0)
             {
-                var jugadoresQ = jugadoresQuery.Where(j => j.IdEquipo == idEquipo.Value);
+                jugadores = jugadores.Where(j => j.IdEquipo == equipoId);
             }
 
-            // Ejecutar la consulta y devolver la lista de jugadores
-            var jugadores = await jugadoresQuery.ToListAsync();
+            // Pasar la lista de equipos al ViewBag para el dropdown
+            ViewBag.Equipos = new SelectList(await _context.Equipo.ToListAsync(), "Id", "Nombre");
 
-            return View(jugadores);
+            return View(await jugadores.ToListAsync());
         }
 
 
